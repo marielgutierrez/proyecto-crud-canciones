@@ -20,9 +20,9 @@ export default function App() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
-  const load = async () => {
+const load = async () => {
     const [list, status] = await Promise.all([api.list(), api.health().catch(() => null)]);
-    setSongs(list);
+    setSongs(Array.isArray(list) ? list : []);
     setHealth(status);
   };
 
